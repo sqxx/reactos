@@ -129,7 +129,6 @@ KiDispatchExceptionToUser(
         UserStack->Alignment = 0;
 
         /* Probe stack and setup machine frame */
-        RtlZeroMemory(&UserStack->MachineFrame, sizeof(UserStack->MachineFrame));
         UserStack->MachineFrame.Rip = Context->Rip;
         UserStack->MachineFrame.SegCs = Context->SegCs;
         UserStack->MachineFrame.EFlags = Context->EFlags;
@@ -348,7 +347,7 @@ KiDispatchException(IN PEXCEPTION_RECORD ExceptionRecord,
             
             /* Forward exception to user mode (does not return) */
             KiDispatchExceptionToUser(TrapFrame, &Context, ExceptionRecord);
-            ÂSSERT(FALSE);
+            NT_ASSERT(FALSE);
         }
 
         /* Try second chance */
