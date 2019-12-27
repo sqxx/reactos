@@ -21,8 +21,8 @@
 
 #include <fslib/vfatlib.h>
 #include <fslib/btrfslib.h>
+#include <fslib/ntfslib.h>
 // #include <fslib/ext2lib.h>
-// #include <fslib/ntfslib.h>
 
 #define NDEBUG
 #include <debug.h>
@@ -43,18 +43,16 @@ static FILE_SYSTEM RegisteredFileSystems[] =
 {
     /* NOTE: The FAT formatter automatically determines
      * whether it will use FAT-16 or FAT-32. */
-    { L"FAT"  , VfatFormat, VfatChkdsk },
-#if 0
-    { L"FAT32", VfatFormat, VfatChkdsk }, // Do we support specific FAT sub-formats specifications?
-    { L"FATX" , VfatxFormat, VfatxChkdsk },
-    { L"NTFS" , NtfsFormat, NtfsChkdsk },
-#endif
+    { L"FAT"  , VfatFormat   , VfatChkdsk    },
+    { L"NTFS" , NtfsFormat   , NtfsChkdsk    },
     { L"BTRFS", BtrfsFormatEx, BtrfsChkdskEx },
 #if 0
-    { L"EXT2" , Ext2Format, Ext2Chkdsk },
-    { L"EXT3" , Ext2Format, Ext2Chkdsk },
-    { L"EXT4" , Ext2Format, Ext2Chkdsk },
-    { L"FFS"  , FfsFormat , FfsChkdsk  },
+    { L"FAT32", VfatFormat , VfatChkdsk  }, // Do we support specific FAT sub-formats specifications?
+    { L"FATX" , VfatxFormat, VfatxChkdsk },
+    { L"EXT2" , Ext2Format , Ext2Chkdsk  },
+    { L"EXT3" , Ext2Format , Ext2Chkdsk  },
+    { L"EXT4" , Ext2Format , Ext2Chkdsk  },
+    { L"FFS"  , FfsFormat  , FfsChkdsk   },
     { L"REISERFS", ReiserfsFormat, ReiserfsChkdsk },
 #endif
 };
